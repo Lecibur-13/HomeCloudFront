@@ -1,0 +1,28 @@
+.images{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.Files{
+  //display: flex;
+  //flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  .container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    img{
+    }
+    ion-card-subtitle{
+      width: 70%;
+    }
+  }
+}
+
+.if{
+  display: flex;
+  align-items: center;
+}

@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      {{title}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,72 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">{{title}}</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+<ion-card>
+  <ion-card-content>
+    <ion-card-title>
+      Upload Files
+    </ion-card-title>
+  </ion-card-content>
+
+  <ion-card-subtitle>
+    <p class="text-secondary">{{name}}</p>
+  </ion-card-subtitle>
+
+  <ion-card-content>
+    <input type="file" id="selectedFile" style="display: none;" (change)="dataPdf($event)"/>
+    <ion-button onclick="document.getElementById('selectedFile').click();"> files</ion-button>
+    <ion-button (click)="onSubmit()">Send</ion-button>
+  </ion-card-content>
+
+</ion-card>
+
+  <ion-card>
+    <ion-card-content class="images">
+      <div *ngFor="let img of imgs" >
+<!--        <img src="{{link + img.name}}" alt="" width="100" height="100"-->
+<!--          *ngIf="img.name.split('.')[img.name.split('.').length-1] === 'gif' ||-->
+<!--          img.name.split('.')[img.name.split('.').length-1] === 'jpg' ||-->
+<!--          img.name.split('.')[img.name.split('.').length-1] === 'jpeg' ||-->
+<!--          img.name.split('.')[img.name.split('.').length-1] === 'png'">-->
+
+        <img src="{{link + img.name}}" alt="" width="100" height="100"
+             *ngIf="img.type === 'gif' ||
+          img.type === 'jpg' ||
+          img.type === 'jpeg' ||
+          img.type === 'png'">
+      </div>
+    </ion-card-content>
+
+    <ion-card-content>
+      <div class="for" *ngFor="let img of imgs;">
+        <div class="if" *ngIf="img.name.split('.')[img.name.split('.').length-1] === 'pdf'">
+
+          <img src="assets/pdf.png" alt="" width="100" height="100">
+          <ion-card-subtitle>{{img.name}}</ion-card-subtitle>
+
+        </div>
+      </div>
+    </ion-card-content>
+
+    <ion-card-content>
+      <div class="for" *ngFor="let img of imgs;">
+        <div class="if"
+             *ngIf="img.name.split('.')[img.name.split('.').length-1] !== 'pdf' &&
+             img.name.split('.')[img.name.split('.').length-1] !== 'gif' &&
+             img.name.split('.')[img.name.split('.').length-1] !== 'jpg' &&
+             img.name.split('.')[img.name.split('.').length-1] !== 'jpeg' &&
+             img.name.split('.')[img.name.split('.').length-1] !== 'png'">
+
+          <img src="assets/other.png" alt="" width="100" height="100">
+          <ion-card-subtitle text-wrap style="overflow: hidden; white-space: normal;" class="ion-text-wrap">{{img.name}}</ion-card-subtitle>
+        </div>
+      </div>
+    </ion-card-content>
+
+  </ion-card>
+
 </ion-content>

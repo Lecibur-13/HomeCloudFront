@@ -13,5 +13,21 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-card class="images">
+    <ion-card-content class="grid-container">
+      <div *ngFor="let img of imgs" >
+            <img class="grid-item" src="{{link + img.name}}" alt=""
+                 *ngIf="img.name.split('.')[img.name.split('.').length-1] === 'gif' ||
+                  img.name.split('.')[img.name.split('.').length-1] === 'jpg' ||
+                  img.name.split('.')[img.name.split('.').length-1] === 'jpeg' ||
+                  img.name.split('.')[img.name.split('.').length-1] === 'png' else none"
+
+            >
+            <ng-template #none>
+              <div class="vacio" style="display: none"></div>
+            </ng-template>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
