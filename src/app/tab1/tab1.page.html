@@ -35,17 +35,17 @@
   <ion-card>
     <ion-card-content class="images">
       <div *ngFor="let img of imgs" >
+        <div class="if" *ngIf="img.type === 'gif' || img.type === 'jpg' || img.type === 'jpeg' || img.type === 'png'">
+          <img src="{{link + img.name}}" alt="" width="100" height="100">
+        </div>
 <!--        <img src="{{link + img.name}}" alt="" width="100" height="100"-->
 <!--          *ngIf="img.name.split('.')[img.name.split('.').length-1] === 'gif' ||-->
 <!--          img.name.split('.')[img.name.split('.').length-1] === 'jpg' ||-->
 <!--          img.name.split('.')[img.name.split('.').length-1] === 'jpeg' ||-->
 <!--          img.name.split('.')[img.name.split('.').length-1] === 'png'">-->
 
-        <img src="{{link + img.name}}" alt="" width="100" height="100"
-             *ngIf="img.type === 'gif' ||
-          img.type === 'jpg' ||
-          img.type === 'jpeg' ||
-          img.type === 'png'">
+
+
       </div>
     </ion-card-content>
 
