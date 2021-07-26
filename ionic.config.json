@@ -1,0 +1,7 @@
+{
+  "name": "HomeCloudFront",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
