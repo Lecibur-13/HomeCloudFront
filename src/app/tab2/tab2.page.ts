@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {UploadService} from '../_services/upload.service';
+import Masonry from 'masonry-layout';
+import {ModalController} from '@ionic/angular';
+import {ImgComponent} from '../_modals/img/img.component';
 
 @Component({
   selector: 'app-tab2',
@@ -7,25 +10,59 @@ import {UploadService} from '../_services/upload.service';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page implements OnInit{
-  title = 'HomeCloud';
-  url = 'http://192.168.1.245:5000';
+  title = 'Images';
+  url = 'http://192.168.2.50:5000';
   link: string | undefined;
   imgs: any;
   file: any;
   name: any;
-
+  // @ts-ignore
   constructor(
-    private uploadService: UploadService
+    private uploadService: UploadService,
+    private modal: ModalController
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit(){
     this.link = this.url + '/api/get/';
     this.getImgs();
+    setTimeout(() => {
+      this.masonry();
+    }, 120);
+  }
+  init(){
+    this.link = this.url + '/api/get/';
+    this.getImgs();
+    setTimeout(() => {
+      this.masonry();
+    }, 120);
   }
   getImgs(){
-    this.uploadService.getFile().subscribe(response => {
+    this.uploadService.getImg().subscribe(response => {
       this.imgs = response;
-      // this.type = this.imgs[1].name.split('.')[(this.imgs[1].name.split('.').length)-1];
     });
+  }
+  masonry(){
+    const elem = document.querySelector('.grid-container');
+      const msnry = new Masonry(elem, {
+        // options...
+        itemSelector: '.grid-item',
+        fitWidth: true,
+      });
+  }
+  initt(){
+    let index = 0;
+    if (index === 0){
+      index += 1;
+      this.ngOnInit();
+    }
+  }
+
+  openPreview(img){
+    this.modal.create({
+      component: ImgComponent,
+      componentProps: {
+        img: img.name
+      }
+    }).then(modal => modal.present());
   }
 }

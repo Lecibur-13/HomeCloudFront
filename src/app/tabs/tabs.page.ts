@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Tab2Page} from "../tab2/tab2.page";
 
 @Component({
   selector: 'app-tabs',
@@ -7,6 +8,10 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {}
-
+  constructor(
+    private tab2: Tab2Page
+  ) {}
+  active(){
+    this.tab2.getImgs();
+  }
 }

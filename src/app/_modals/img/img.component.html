@@ -1,0 +1,13 @@
+<ion-content>
+  <ion-item class="close-fake" lines="none" text-center>
+    <ion-button (click)="close()" fill="clear" color="light">
+      <ion-icon name="close" slot="end"></ion-icon>
+    </ion-button>
+  </ion-item>
+
+  <ion-slides [options]="sliderOpts" #slider>
+    <ion-slide>
+      <img src="{{link + img}}" alt="">
+    </ion-slide>
+  </ion-slides>
+</ion-content>

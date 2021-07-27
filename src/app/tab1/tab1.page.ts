@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UploadService} from '../_services/upload.service';
+import {ImgComponent} from '../_modals/img/img.component';
+import {ModalController} from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -8,48 +10,67 @@ import {UploadService} from '../_services/upload.service';
 })
 export class Tab1Page implements OnInit{
   title = 'HomeCloud';
-  url = 'http://192.168.1.245:5000';
-  link: string | undefined;
+  url = 'http://192.168.2.50:5000';
+  link: any;
   imgs: any;
+  files: any;
+  pdfs: any;
   file: any;
   name: any;
-  imgType: any;
-  isIMG = false;
-  format: any;
-  // eslint-disable-next-line max-len
-  // if = '\'img.name.split(\'.\')[1] == \'gif\' || img.name.split(\'.\')[1] == \'jpg\' || img.name.split(\'.\')[1] == \'jpeg\' || img.name.split(\'.\')[1] == \'png\''
-  // if = img.name.split('.')[1] == gif || img.name.split('.')[1] == jpg || img.name.split(.)[1] == jpeg || img.name.split(.)[1] == png ;
   constructor(
-    private uploadService: UploadService
+    private uploadService: UploadService,
+    private modal: ModalController
   ) {}
 
   ngOnInit(): void {
     this.link = this.url + '/api/get/';
     this.getImgs();
+    this.getFiles();
+    this.getPdf();
   }
 
   // @ts-ignore
   dataPdf(e) {
-    console.log(e);
     this.file = e.target;
-
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
+    if (e.target.files && e.target.files) {
+      const file = e.target.files;
       this.name = file.name;
     }
   }
   onSubmit() {
     const formData = new FormData();
     if (this.file) {
-      formData.append('archivo', this.file.files[0]);
+      for(let i = 0; i < this.file.files.length; i++ ){
+        formData.append('archivo', this.file.files[i]);
+      }
     }
     this.uploadService.uploadFile(formData).subscribe(response => {
       this.getImgs();
+      this.getFiles();
+      this.getPdf();
     });
   }
-  getImgs(){
-    this.uploadService.getFile().subscribe(response => {
+ getImgs(){
+    this.uploadService.getImg().subscribe(response => {
       this.imgs = response;
     });
+  }
+  getFiles(){
+    this.uploadService.getFile().subscribe(response => {
+      this.files = response;
+    });
+  }
+   getPdf(){
+    this.uploadService.getPdf().subscribe(response => {
+      this.pdfs = response;
+    });
+  }
+    openPreview(img){
+    this.modal.create({
+      component: ImgComponent,
+      componentProps: {
+        img: img.name
+      }
+    }).then(modal => modal.present());
   }
 }

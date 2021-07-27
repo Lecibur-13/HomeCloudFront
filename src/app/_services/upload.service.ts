@@ -6,7 +6,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class UploadService {
-  url = 'http://192.168.1.245:5000';
+  url = 'http://192.168.2.50:5000';
   constructor(
     private http: HttpClient
   ) { }
@@ -16,6 +16,12 @@ export class UploadService {
   }
 
   getFile(): Observable<any> {
-    return this.http.get(this.url + '/api/list');
+    return this.http.get(this.url + '/api/listfile');
+  }
+  getImg(): Observable<any> {
+    return this.http.get(this.url + '/api/listimg');
+  }
+  getPdf(): Observable<any> {
+    return this.http.get(this.url + '/api/listpdf');
   }
 }

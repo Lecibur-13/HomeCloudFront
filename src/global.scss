@@ -58,3 +58,12 @@
 //.custom-file-input:active::before {
 //  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 //}
+
+@media (prefers-color-scheme: dark){
+  .ios ion-modal {
+    --ion-background-color: rgba(44,39,45,0.0);
+    --ion-toolbar-background: rgba(44,39,45,0.0);
+    --ion-toolbar-border-color: rgba(44,39,45,0.0);
+    backdrop-filter: blur(10px);
+}
+}

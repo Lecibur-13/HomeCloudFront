@@ -25,52 +25,39 @@
   </ion-card-subtitle>
 
   <ion-card-content>
-    <input type="file" id="selectedFile" style="display: none;" (change)="dataPdf($event)"/>
+    <input multiple type="file" id="selectedFile" style="display: none;" (change)="dataPdf($event)"/>
     <ion-button onclick="document.getElementById('selectedFile').click();"> files</ion-button>
     <ion-button (click)="onSubmit()">Send</ion-button>
   </ion-card-content>
 
 </ion-card>
 
+<!--  img-->
   <ion-card>
-    <ion-card-content class="images">
-      <div *ngFor="let img of imgs" >
-        <div class="if" *ngIf="img.type === 'gif' || img.type === 'jpg' || img.type === 'jpeg' || img.type === 'png'">
-          <img src="{{link + img.name}}" alt="" width="100" height="100">
-        </div>
-<!--        <img src="{{link + img.name}}" alt="" width="100" height="100"-->
-<!--          *ngIf="img.name.split('.')[img.name.split('.').length-1] === 'gif' ||-->
-<!--          img.name.split('.')[img.name.split('.').length-1] === 'jpg' ||-->
-<!--          img.name.split('.')[img.name.split('.').length-1] === 'jpeg' ||-->
-<!--          img.name.split('.')[img.name.split('.').length-1] === 'png'">-->
-
-
-
+    <ion-card-content class="content">
+      <div *ngFor="let img of imgs; let i = index" class="overflow">
+            <img src="{{link + img.name}}" alt="" tappable (click)="openPreview(imgs[i])">
       </div>
     </ion-card-content>
 
+<!--    pdf-->
     <ion-card-content>
-      <div class="for" *ngFor="let img of imgs;">
-        <div class="if" *ngIf="img.name.split('.')[img.name.split('.').length-1] === 'pdf'">
+      <div class="for" *ngFor="let pdf of pdfs;">
+        <div class="if">
 
           <img src="assets/pdf.png" alt="" width="100" height="100">
-          <ion-card-subtitle>{{img.name}}</ion-card-subtitle>
+          <ion-card-subtitle>{{pdf.name}}</ion-card-subtitle>
 
         </div>
       </div>
     </ion-card-content>
 
+<!--    other files-->
     <ion-card-content>
-      <div class="for" *ngFor="let img of imgs;">
-        <div class="if"
-             *ngIf="img.name.split('.')[img.name.split('.').length-1] !== 'pdf' &&
-             img.name.split('.')[img.name.split('.').length-1] !== 'gif' &&
-             img.name.split('.')[img.name.split('.').length-1] !== 'jpg' &&
-             img.name.split('.')[img.name.split('.').length-1] !== 'jpeg' &&
-             img.name.split('.')[img.name.split('.').length-1] !== 'png'">
-
+      <div class="for" *ngFor="let file of files;">
+        <div class="if">
           <img src="assets/other.png" alt="" width="100" height="100">
-          <ion-card-subtitle text-wrap style="overflow: hidden; white-space: normal;" class="ion-text-wrap">{{img.name}}</ion-card-subtitle>
+          <ion-card-subtitle style="overflow: hidden; white-space: normal;" class="ion-text-wrap">{{file.name}}</ion-card-subtitle>
         </div>
       </div>
     </ion-card-content>

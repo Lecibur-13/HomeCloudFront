@@ -1,16 +1,9 @@
 .grid-container{
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 100px);
-  gap: 20px;
-  justify-content: center;
-
-  grid-template-rows: masonry;
+  margin: 0 auto;
 }
 
 .grid-item{
-  width: 230px;
-  //height: 200px;
-  //object-fit: cover;
-
-
+  width: 27%;
+  border-radius: 5px;
+  margin: 0.7%;
 }

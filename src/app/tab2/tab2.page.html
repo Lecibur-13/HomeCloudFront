@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      {{title}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,25 +9,16 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">{{title}}</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-card class="images">
     <ion-card-content class="grid-container">
-      <div *ngFor="let img of imgs" >
-            <img class="grid-item" src="{{link + img.name}}" alt=""
-                 *ngIf="img.name.split('.')[img.name.split('.').length-1] === 'gif' ||
-                  img.name.split('.')[img.name.split('.').length-1] === 'jpg' ||
-                  img.name.split('.')[img.name.split('.').length-1] === 'jpeg' ||
-                  img.name.split('.')[img.name.split('.').length-1] === 'png' else none"
-
-            >
-            <ng-template #none>
-              <div class="vacio" style="display: none"></div>
-            </ng-template>
+      <div *ngFor="let img of imgs; let i = index" >
+            <img class="grid-item" src="{{link + img.name}}" alt="" tappable (click)="openPreview(imgs[i])">
       </div>
     </ion-card-content>
   </ion-card>
-
 </ion-content>
+
