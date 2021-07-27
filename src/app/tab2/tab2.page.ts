@@ -3,6 +3,7 @@ import {UploadService} from '../_services/upload.service';
 import Masonry from 'masonry-layout';
 import {ModalController} from '@ionic/angular';
 import {ImgComponent} from '../_modals/img/img.component';
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-tab2',
@@ -11,16 +12,19 @@ import {ImgComponent} from '../_modals/img/img.component';
 })
 export class Tab2Page implements OnInit{
   title = 'Images';
-  url = 'http://192.168.2.50:5000';
+  url: any;
   link: string | undefined;
   imgs: any;
   file: any;
   name: any;
+  index = true;
   // @ts-ignore
   constructor(
     private uploadService: UploadService,
     private modal: ModalController
-  ) {}
+  ) {
+    this.url = environment.URL
+  }
 
   ngOnInit(){
     this.link = this.url + '/api/get/';
@@ -50,9 +54,9 @@ export class Tab2Page implements OnInit{
       });
   }
   initt(){
-    let index = 0;
-    if (index === 0){
-      index += 1;
+
+    if (this.index ){
+      this.index = false;
       this.ngOnInit();
     }
   }
@@ -60,6 +64,7 @@ export class Tab2Page implements OnInit{
   openPreview(img){
     this.modal.create({
       component: ImgComponent,
+      cssClass: "modal-fullscreen",
       componentProps: {
         img: img.name
       }

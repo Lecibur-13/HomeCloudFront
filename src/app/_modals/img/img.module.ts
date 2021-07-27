@@ -11,4 +11,6 @@ import {BrowserModule} from '@angular/platform-browser';
     CommonModule
   ]
 })
-export class ImgModule { }
+export class ImgModule {
+
+}

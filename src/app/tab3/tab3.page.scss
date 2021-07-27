@@ -1,0 +1,36 @@
+.itemTitle{
+  font-size: 27px;
+}
+ion-item{
+  margin-top: 20px;
+}
+ion-card{
+  margin-top: 10px;
+}
+.if{
+  display: flex;
+  align-items: center;
+}
+.hide{
+  height: 0 !important;
+  padding: 0 !important;
+  transition: all ease-in-out 50ms;
+}
+
+ :host {
+  ion-button {
+    --background: transparent;
+    --border-radius: 50px;
+  }
+   ion-icon{
+
+    color: var(--ion-color-primary);
+   }
+   .filename{
+    width: 100%;
+  }
+  .cloud{
+    color: var(--ion-color-primary)
+  }
+}
+//[class.hide]="hideCard"

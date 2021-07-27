@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      {{title}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,8 +9,56 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+      <ion-title size="large">{{title}}</ion-title>
     </ion-toolbar>
   </ion-header>
+
+
+   <ion-item>
+      <ion-toolbar>
+        <ion-title size="large" class="itemTitle">PDF</ion-title>
+        <ion-button slot="end" (click)="hidePDF()">
+          <ion-icon name="eye-off" ></ion-icon>
+        </ion-button>
+      </ion-toolbar>
+   </ion-item>
+  <ion-card *ngIf="pdfs">
+    <ion-card-content [class.hide]="hidepdf">
+      <div class="for" *ngFor="let pdf of pdfs;">
+        <div class="if" (click)="openPdf(pdf)">
+
+          <img src="assets/pdf.png" alt="" width="50" height="50">
+          <ion-card-subtitle class="filename">{{pdf.name}}</ion-card-subtitle>
+          <ion-button (click)="download(pdf.name)" fill="clear" color="light" slot="end" >
+            <ion-icon name="cloud-download" class="cloud"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-item>
+      <ion-toolbar>
+        <ion-title size="large" class="itemTitle">Others</ion-title>
+        <ion-button slot="end" (click)="hideOther()">
+          <ion-icon name="eye-off" ></ion-icon>
+        </ion-button>
+      </ion-toolbar>
+   </ion-item>
+  <ion-card class="finalCard" *ngIf="files">
+    <ion-card-content [class.hide]="hideother">
+      <div class="for" *ngFor="let file of files;">
+        <div class="if" (click)="openPdf(file)">
+
+          <img src="assets/other.png" alt="" width="50" height="50">
+          <ion-card-subtitle class="filename">{{file.name}}</ion-card-subtitle>
+          <ion-button (click)="download(file.name)" fill="clear" color="light" slot="end" >
+            <ion-icon name="cloud-download" class="cloud"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

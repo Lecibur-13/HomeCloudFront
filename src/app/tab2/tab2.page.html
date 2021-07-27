@@ -13,7 +13,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-card class="images">
+  <ion-card class="images finalCard" *ngIf="imgs">
     <ion-card-content class="grid-container">
       <div *ngFor="let img of imgs; let i = index" >
             <img class="grid-item" src="{{link + img.name}}" alt="" tappable (click)="openPreview(imgs[i])">

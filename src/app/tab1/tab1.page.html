@@ -12,56 +12,88 @@
       <ion-title size="large">{{title}}</ion-title>
     </ion-toolbar>
   </ion-header>
-
-<ion-card>
+<div class="gridcont">
+  <ion-card>
   <ion-card-content>
     <ion-card-title>
       Upload Files
     </ion-card-title>
   </ion-card-content>
 
-  <ion-card-subtitle>
-    <p class="text-secondary">{{name}}</p>
-  </ion-card-subtitle>
+    <ion-card-content>
+      <ion-card-subtitle class="nombres">
+          <div *ngFor='let name of names' >
+              {{ name.name }} ||
+          </div>
+      </ion-card-subtitle>
+    </ion-card-content>
 
-  <ion-card-content>
+  <ion-card-content class="buttons">
     <input multiple type="file" id="selectedFile" style="display: none;" (change)="dataPdf($event)"/>
-    <ion-button onclick="document.getElementById('selectedFile').click();"> files</ion-button>
-    <ion-button (click)="onSubmit()">Send</ion-button>
+    <ion-button class='up'onclick="document.getElementById('selectedFile').click();">
+      <ion-icon name="cloud-upload"></ion-icon>
+    </ion-button>
+    <ion-button class='up'(click)="onSubmit()">
+      <ion-icon name="send"></ion-icon>
+    </ion-button>
   </ion-card-content>
 
 </ion-card>
 
 <!--  img-->
-  <ion-card>
-    <ion-card-content class="content">
-      <div *ngFor="let img of imgs; let i = index" class="overflow">
-            <img src="{{link + img.name}}" alt="" tappable (click)="openPreview(imgs[i])">
+  <ion-card class="finalCard" *ngIf="imgs && pdfs && files">
+    <ion-card-content class="content" *ngIf="imgs">
+      <div *ngFor="let img of imgs | slice:0:5; let i = index;" class="overflow">
+            <img *ngIf="i <= 10" src="{{link + img.name}}" alt="" tappable (click)="openPreview(imgs[i])">
+      </div>
+      <div class="overflow" routerLink="/tabs/tab2">
+        see more...
       </div>
     </ion-card-content>
 
 <!--    pdf-->
-    <ion-card-content>
-      <div class="for" *ngFor="let pdf of pdfs;">
-        <div class="if">
+    <ion-card-content *ngIf="pdfs">
 
-          <img src="assets/pdf.png" alt="" width="100" height="100">
-          <ion-card-subtitle>{{pdf.name}}</ion-card-subtitle>
+      <div class="for" *ngFor="let pdf of pdfs | slice:0:3;">
+        <div class="if" >
+
+          <img src="assets/pdf.png" alt="" width="50" height="50" (click)="openPdf(pdf)">
+          <ion-card-subtitle class="filename">{{pdf.name}}</ion-card-subtitle>
+          <ion-button (click)="download(pdf.name)" fill="clear" color="light" slot="end" >
+            <ion-icon name="cloud-download" class="cloud"></ion-icon>
+          </ion-button>
 
         </div>
       </div>
+      <ion-item-divider class="divider" routerLink="/tabs/tab3">
+        see more...
+      </ion-item-divider>
     </ion-card-content>
 
+
+
 <!--    other files-->
-    <ion-card-content>
-      <div class="for" *ngFor="let file of files;">
+    <ion-card-content *ngIf="files">
+      <div class="for" *ngFor="let file of files | slice:0:3;">
         <div class="if">
-          <img src="assets/other.png" alt="" width="100" height="100">
-          <ion-card-subtitle style="overflow: hidden; white-space: normal;" class="ion-text-wrap">{{file.name}}</ion-card-subtitle>
+          <img src="assets/other.png" alt="" width="50" height="50">
+          <ion-card-subtitle  class="filename ion-text-wrap">{{file.name}}</ion-card-subtitle>
+          <ion-button (click)="download(file.name)" fill="clear" color="light" slot="end" >
+            <ion-icon name="cloud-download" class="cloud"></ion-icon>
+          </ion-button>
         </div>
+
+      </div>
+
+      <div routerLink="/tabs/tab3">
+        <ion-item-divider class="divider" >
+          see more...
+        </ion-item-divider>
       </div>
     </ion-card-content>
 
   </ion-card>
+</div>
+
 
 </ion-content>

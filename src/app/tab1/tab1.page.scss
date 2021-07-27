@@ -23,17 +23,47 @@
 
 .content{
   display: grid;
-  gap: 1rem;
+  gap: 0.5rem;
+  grid-gap: 0.5rem;
   grid-auto-rows: 6rem;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 6rem), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 5rem), 1fr));
 }
 .overflow{
-  width: 100px;
-  height: 100px;
+  width: 90%;
+  height: 90%;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px;
   border-radius: 5px;
+  background: rgba(194, 194, 194, 0.15);
+  backdrop-filter: blur(10px);
+  font-size: smaller;
+  font-weight: bolder;
+}
+
+.divider{
+  height: 50px;
+  background: rgba(194, 194, 194, 0.15);
+  backdrop-filter: blur(10px);
+  margin-top: 1rem;
+}
+:host {
+  .up {
+    --border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+  }
+  .filename{
+    width: 100%;
+  }
+  .cloud{
+    color: var(--ion-color-primary)
+  }
+}
+
+.nombres{
+  margin-top: 0;
+  margin-bottom: 0;
 }

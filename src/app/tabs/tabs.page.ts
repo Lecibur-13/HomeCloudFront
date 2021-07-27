@@ -11,7 +11,11 @@ export class TabsPage {
   constructor(
     private tab2: Tab2Page
   ) {}
-  active(){
+
+  setCurrentTab() {
     this.tab2.getImgs();
+    this.tab2.masonry();
+    this.tab2.masonry();
+    this.tab2.masonry();
   }
 }

@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+     <ion-button (click)="close()" fill="clear">
+      <ion-icon name="close" slot="end"></ion-icon>
+    </ion-button>
+    <ion-title>
+      {{pdfs}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ng2-pdfjs-viewer class="pdf-viewer ion-no-border" #pdfJsViewerComponent
+  pdfSrc="{{link + pdfs}}"
+  [openFile]="false"
+  [fullScreen]="false"
+  [diagnosticLogs]="true"
+  [download]="true"
+  (onDocumentLoad)="onDocumentLoad()"
+  [print]="true"
+  [externalWindow]="false"
+  [viewBookmark]="true"
+>
+
+</ng2-pdfjs-viewer>
+</ion-content>
