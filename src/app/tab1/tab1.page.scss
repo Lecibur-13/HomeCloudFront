@@ -1,34 +1,38 @@
-.Files{
+.Files {
   //display: flex;
   //flex-wrap: wrap;
   align-items: center;
   width: 100%;
-  .container{
+
+  .container {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     width: 100%;
-    img{
+
+    img {
     }
-    ion-card-subtitle{
+
+    ion-card-subtitle {
       width: 70%;
     }
   }
 }
 
-.if{
+.if {
   display: flex;
   align-items: center;
 }
 
-.content{
+.content {
   display: grid;
   gap: 0.5rem;
   grid-gap: 0.5rem;
   grid-auto-rows: 6rem;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 5rem), 1fr));
 }
-.overflow{
+
+.overflow {
   width: 90%;
   height: 90%;
   overflow: hidden;
@@ -42,12 +46,13 @@
   font-weight: bolder;
 }
 
-.divider{
+.divider {
   height: 50px;
   background: rgba(194, 194, 194, 0.15);
   backdrop-filter: blur(10px);
   margin-top: 1rem;
 }
+
 :host {
   .up {
     --border-radius: 50px;
@@ -55,15 +60,20 @@
     height: 50px;
     margin: 10px;
   }
-  .filename{
+
+  .filename {
     width: 100%;
   }
-  .cloud{
+
+  .cloud {
     color: var(--ion-color-primary)
   }
 }
 
-.nombres{
+.nombres {
   margin-top: 0;
   margin-bottom: 0;
 }
+  .opButtons {
+    padding-inline-end: 0rem;
+  }

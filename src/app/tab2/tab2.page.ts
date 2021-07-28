@@ -24,6 +24,12 @@ export class Tab2Page implements OnInit{
     private modal: ModalController
   ) {
     this.url = environment.URL
+
+    this.link = this.url + '/api/get/';
+    this.getImgs();
+    setTimeout(() => {
+      this.masonry();
+    }, 200);
   }
 
   ngOnInit(){
@@ -31,14 +37,13 @@ export class Tab2Page implements OnInit{
     this.getImgs();
     setTimeout(() => {
       this.masonry();
-    }, 120);
+    }, 200);
   }
   init(){
     this.link = this.url + '/api/get/';
-    this.getImgs();
     setTimeout(() => {
       this.masonry();
-    }, 120);
+    }, 520);
   }
   getImgs(){
     this.uploadService.getImg().subscribe(response => {
@@ -48,25 +53,28 @@ export class Tab2Page implements OnInit{
   masonry(){
     const elem = document.querySelector('.grid-container');
       const msnry = new Masonry(elem, {
-        // options...
         itemSelector: '.grid-item',
-        fitWidth: true,
+        columnWidth: 10,
+        fitWidth: true
       });
   }
-  initt(){
-
-    if (this.index ){
-      this.index = false;
-      this.ngOnInit();
-    }
+  doRefresh(event) {
+      this.getImgs();
+      this.masonry();
+    setTimeout(() => {
+      this.masonry();
+      event.target.complete();
+    }, 1500);
   }
 
   openPreview(img){
+    console.log(img.type)
     this.modal.create({
       component: ImgComponent,
       cssClass: "modal-fullscreen",
       componentProps: {
-        img: img.name
+        img: img.name,
+        imgtype: img.type
       }
     }).then(modal => modal.present());
   }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UploadService} from "../_services/upload.service";
+import {UploadService} from '../_services/upload.service';
 import {ModalController} from "@ionic/angular";
 import {PdfComponent} from "../_modals/pdf/pdf.component";
 import {DownloadRequest, NotificationVisibility} from "@ionic-native/downloader/ngx";
@@ -10,14 +10,15 @@ import {environment} from "../../environments/environment";
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss']
 })
-export class Tab3Page implements OnInit{
-title = 'Files';
-pdfs: any;
-url:any;
-hideother = false
-hidepdf = false
-files: any;
-link: any;
+export class Tab3Page implements OnInit {
+  title = 'Files';
+  pdfs: any;
+  url: any;
+  hideother = false
+  hidepdf = false
+  files: any;
+  link: any;
+
   constructor(
     private uploadService: UploadService,
     private modal: ModalController
@@ -25,23 +26,25 @@ link: any;
     this.url = environment.URL
   }
 
-  ngOnInit(): void{
+  ngOnInit(): void {
+    this.link = this.url + '/api/get/';
     this.getPdf();
     this.getFiles();
-    this.link = this.url + '/api/get/';
   }
 
-   getPdf(){
+  getPdf() {
     this.uploadService.getPdf().subscribe(response => {
       this.pdfs = response;
     });
   }
-    getFiles(){
+
+  getFiles() {
     this.uploadService.getFile().subscribe(response => {
       this.files = response;
     });
   }
-  openPdf(pdf){
+
+  openPdf(pdf) {
     this.modal.create({
       component: PdfComponent,
       cssClass: "modal-fullscreen",
@@ -50,25 +53,42 @@ link: any;
       }
     }).then(modal => modal.present());
   }
-  hideOther(){
+
+  hideOther() {
     this.hideother = !this.hideother
   }
-  hidePDF(){
+
+  hidePDF() {
     this.hidepdf = !this.hidepdf
   }
-    download(file) {
-      console.log(file)
-      const request: DownloadRequest = {
-        uri: this.link + file,
-        title: file,
-        description: '',
-        mimeType: '',
-        visibleInDownloadsUi: true,
-        notificationVisibility: NotificationVisibility.VisibleNotifyCompleted,
-        destinationInExternalFilesDir: {
-          dirType: 'Downloads',
-          subPath: file
-        }
-      };
-    }
+
+  download(file) {
+    const request: DownloadRequest = {
+      uri: this.link + file,
+      title: file,
+      description: '',
+      mimeType: '',
+      visibleInDownloadsUi: true,
+      notificationVisibility: NotificationVisibility.VisibleNotifyCompleted,
+      destinationInExternalFilesDir: {
+        dirType: 'Downloads',
+        subPath: file
+      }
+    };
+  }
+
+  delete(path) {
+    this.uploadService.delete(path).subscribe(response => {
+      this.getFiles();
+      this.getPdf();
+    });
+  }
+
+    doRefresh(event) {
+      this.getPdf();
+      this.getFiles();
+    setTimeout(() => {
+      event.target.complete();
+    }, 1500);
+  }
 }

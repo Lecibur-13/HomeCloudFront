@@ -12,12 +12,14 @@ import {ImgComponent} from './_modals/img/img.component';
 import {PdfComponent} from './_modals/pdf/pdf.component';
 import {PdfJsViewerModule} from 'ng2-pdfjs-viewer';
 import {Downloader} from '@ionic-native/downloader/ngx';
+import {Tab1Page} from "./tab1/tab1.page";
+import {Tab3Page} from "./tab3/tab3.page";
 
 @NgModule({
   declarations: [AppComponent, ImgComponent, PdfComponent],
   entryComponents: [],
   imports: [BrowserModule, PdfJsViewerModule, CommonModule , IonicModule.forRoot({mode: 'ios'}), AppRoutingModule, HttpClientModule],
-  providers: [Tab2Page, Downloader,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [Tab1Page,Tab2Page,Tab3Page, Downloader,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

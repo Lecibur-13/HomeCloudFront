@@ -27,4 +27,7 @@ export class UploadService {
   getPdf(): Observable<any> {
     return this.http.get(this.url + '/api/listpdf');
   }
+  delete(data): Observable<any> {
+    return this.http.delete(this.url + '/api/delete/' + data);
+  }
 }

@@ -13,12 +13,21 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-card class="images finalCard" *ngIf="imgs">
-    <ion-card-content class="grid-container">
-      <div *ngFor="let img of imgs; let i = index" >
-            <img class="grid-item" src="{{link + img.name}}" alt="" tappable (click)="openPreview(imgs[i])">
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+  <ion-card class="finalCard" *ngIf="imgs">
+
+      <div class="grid-container">
+        <div *ngFor="let img of imgs; let i = index" >
+          <img *ngIf="img.type != 'mp4'" class="grid-item" src="{{link + img.name}}" alt="" tappable (click)="openPreview(imgs[i])">
+          <video *ngIf="img.type == 'mp4'" class="grid-item" (click)="openPreview(imgs[i])">
+            <source src="{{link + img.name}}" type="video/mp4">
+          </video>
+        </div>
       </div>
-    </ion-card-content>
+
   </ion-card>
 </ion-content>
 

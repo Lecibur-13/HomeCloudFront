@@ -1,9 +1,17 @@
-.grid-container{
-  margin: 0 auto;
-}
+.finalCard{
+  min-width: 90%;
+  min-height: 80%;
 
-.grid-item{
-  width: 27%;
-  border-radius: 5px;
-  margin: 0.7%;
+  .grid-container{
+    margin: 5% auto;
+    min-width: 90%;
+    min-height: 90%;
+  }
+
+  .grid-item{
+    width: 27%;
+    border-radius: 5px;
+    margin: 2%;
+  }
+
 }

@@ -13,24 +13,30 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
 
-   <ion-item>
-      <ion-toolbar>
-        <ion-title size="large" class="itemTitle">PDF</ion-title>
-        <ion-button slot="end" (click)="hidePDF()">
-          <ion-icon name="eye-off" ></ion-icon>
-        </ion-button>
-      </ion-toolbar>
-   </ion-item>
+
+  <ion-item>
+    <ion-toolbar>
+      <ion-title size="large" class="itemTitle">PDF</ion-title>
+      <ion-button slot="end" (click)="hidePDF()">
+        <ion-icon name="eye-off"></ion-icon>
+      </ion-button>
+    </ion-toolbar>
+  </ion-item>
   <ion-card *ngIf="pdfs">
     <ion-card-content [class.hide]="hidepdf">
       <div class="for" *ngFor="let pdf of pdfs;">
         <div class="if">
-
           <img src="assets/pdf.png" alt="" width="50" height="50" (click)="openPdf(pdf)">
           <ion-card-subtitle class="filename" (click)="openPdf(pdf)">{{pdf.name}}</ion-card-subtitle>
-          <ion-button (click)="download(pdf.name)" fill="clear" color="light" slot="end" >
+          <ion-button (click)="download(pdf.name)" fill="clear" color="light" slot="end">
             <ion-icon name="cloud-download" class="cloud"></ion-icon>
+          </ion-button>
+          <ion-button class="opButtons" (click)="delete(pdf.name)" fill="clear" color="light" slot="end">
+            <ion-icon name="trash" class="cloud"></ion-icon>
           </ion-button>
         </div>
       </div>
@@ -39,22 +45,25 @@
 
 
   <ion-item>
-      <ion-toolbar>
-        <ion-title size="large" class="itemTitle">Others</ion-title>
-        <ion-button slot="end" (click)="hideOther()">
-          <ion-icon name="eye-off" ></ion-icon>
-        </ion-button>
-      </ion-toolbar>
-   </ion-item>
+    <ion-toolbar>
+      <ion-title size="large" class="itemTitle">Others</ion-title>
+      <ion-button slot="end" (click)="hideOther()">
+        <ion-icon name="eye-off"></ion-icon>
+      </ion-button>
+    </ion-toolbar>
+  </ion-item>
   <ion-card class="finalCard" *ngIf="files">
     <ion-card-content [class.hide]="hideother">
       <div class="for" *ngFor="let file of files;">
         <div class="if">
 
           <img src="assets/other.png" alt="" width="50" height="50">
-          <ion-card-subtitle class="filename" >{{file.name}}</ion-card-subtitle>
-          <ion-button (click)="download(file.name)" fill="clear" color="light" slot="end" >
+          <ion-card-subtitle class="filename">{{file.name}}</ion-card-subtitle>
+          <ion-button (click)="download(file.name)" fill="clear" color="light" slot="end">
             <ion-icon name="cloud-download" class="cloud"></ion-icon>
+          </ion-button>
+          <ion-button class="opButtons" (click)="delete(file.name)" fill="clear" color="light" slot="end">
+            <ion-icon name="trash" class="cloud"></ion-icon>
           </ion-button>
         </div>
       </div>
