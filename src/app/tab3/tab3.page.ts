@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UploadService} from "../_services/upload.service";
 import {ModalController} from "@ionic/angular";
-import {ImgComponent} from "../_modals/img/img.component";
 import {PdfComponent} from "../_modals/pdf/pdf.component";
 import {DownloadRequest, NotificationVisibility} from "@ionic-native/downloader/ngx";
 import {environment} from "../../environments/environment";

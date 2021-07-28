@@ -1,6 +1,6 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "HomeCloudFront",
+	"appId": "io.lecibur.homecloud",
+	"appName": "HomeCloud",
 	"webDir": "www",
 	"bundledWebRuntime": false
 }

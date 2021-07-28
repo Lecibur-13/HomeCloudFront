@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'HomeCloudFront',
+  appId: 'io.lecibur.homecloud',
+  appName: 'HomeCloud',
   webDir: 'www',
   bundledWebRuntime: false
 };

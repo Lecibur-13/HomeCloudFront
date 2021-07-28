@@ -9,9 +9,9 @@ import { HttpClientModule } from '@angular/common/http';
 import {Tab2Page} from './tab2/tab2.page';
 import {CommonModule} from '@angular/common';
 import {ImgComponent} from './_modals/img/img.component';
-import {PdfComponent} from "./_modals/pdf/pdf.component";
-import {PdfJsViewerModule} from "ng2-pdfjs-viewer";
-import {Downloader} from "@ionic-native/downloader/ngx";
+import {PdfComponent} from './_modals/pdf/pdf.component';
+import {PdfJsViewerModule} from 'ng2-pdfjs-viewer';
+import {Downloader} from '@ionic-native/downloader/ngx';
 
 @NgModule({
   declarations: [AppComponent, ImgComponent, PdfComponent],
