@@ -31,7 +31,7 @@
       <div class="for" *ngFor="let pdf of pdfs;">
         <div class="if">
           <img src="assets/pdf.png" alt="" width="50" height="50" (click)="openPdf(pdf)">
-          <ion-card-subtitle class="filename" (click)="openPdf(pdf)">{{pdf.name}}</ion-card-subtitle>
+          <ion-card-subtitle class="filename" (click)="openPdf(pdf)">{{pdf.name.split(".")[0]}}</ion-card-subtitle>
           <ion-button (click)="download(pdf.name)" fill="clear" color="light" slot="end">
             <ion-icon name="cloud-download" class="cloud"></ion-icon>
           </ion-button>
@@ -58,7 +58,7 @@
         <div class="if">
 
           <img src="assets/other.png" alt="" width="50" height="50">
-          <ion-card-subtitle class="filename">{{file.name}}</ion-card-subtitle>
+          <ion-card-subtitle class="filename">{{file.name.split(".")[0]}}</ion-card-subtitle>
           <ion-button (click)="download(file.name)" fill="clear" color="light" slot="end">
             <ion-icon name="cloud-download" class="cloud"></ion-icon>
           </ion-button>

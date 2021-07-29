@@ -26,8 +26,9 @@ ion-card{
 
     color: var(--ion-color-primary);
    }
-   .filename{
-    width: 100%;
+   .filename {
+    min-width: 50%;
+    max-width: 50%;
   }
   .cloud{
     color: var(--ion-color-primary)

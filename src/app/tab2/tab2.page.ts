@@ -67,15 +67,21 @@ export class Tab2Page implements OnInit{
     }, 1500);
   }
 
-  openPreview(img){
-    console.log(img.type)
-    this.modal.create({
+  async openPreview(img) {
+    const Modal = await this.modal.create({
       component: ImgComponent,
       cssClass: "modal-fullscreen",
       componentProps: {
         img: img.name,
         imgtype: img.type
       }
-    }).then(modal => modal.present());
+    })
+
+    await Modal.present();
+    await Modal.onDidDismiss();
+    this.getImgs();
+    setTimeout(() => {
+      this.masonry();
+    }, 500);
   }
 }

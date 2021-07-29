@@ -62,7 +62,8 @@
   }
 
   .filename {
-    width: 100%;
+    min-width: 50%;
+    max-width: 50%;
   }
 
   .cloud {
