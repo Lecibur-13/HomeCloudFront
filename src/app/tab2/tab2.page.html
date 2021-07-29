@@ -21,7 +21,7 @@
 
       <div class="grid-container">
         <div *ngFor="let img of imgs; let i = index" >
-          <img *ngIf="img.type != 'mp4'" class="grid-item" src="{{link + img.name}}" alt="" tappable (click)="openPreview(imgs[i])">
+          <img loading="lazy" *ngIf="img.type != 'mp4'" class="grid-item" src="{{link + img.name}}" alt="" tappable (click)="openPreview(imgs[i])">
           <video *ngIf="img.type == 'mp4'" class="grid-item" (click)="openPreview(imgs[i])">
             <source src="{{link + img.name}}" type="video/mp4">
           </video>

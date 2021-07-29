@@ -13,8 +13,8 @@
 
   <ion-slides [options]="sliderOpts" #slider>
     <ion-slide>
-      <img *ngIf="type != 'mp4'" src="{{link + img}}" alt="">
-      <video *ngIf="type == 'mp4'" autoplay controls loop>
+      <img loading="lazy" *ngIf="type != 'mp4'" src="{{link + img}}" alt="">
+      <video loading="lazy" *ngIf="type == 'mp4'" autoplay controls loop>
         <source src="{{link + img}}" type="video/mp4">
       </video>
     </ion-slide>
